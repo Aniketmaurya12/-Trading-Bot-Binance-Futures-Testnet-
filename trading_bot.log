@@ -1,0 +1,264 @@
+2026-04-21 15:14:29,021 - INFO - Testing Binance Futures Testnet connectivity.
+2026-04-21 15:14:29,832 - INFO - Connected to Binance Futures Testnet successfully.
+2026-04-21 15:14:29,833 - INFO - Sending MARKET order BTCUSDT BUY qty=0.01 price=None stopPrice=None
+2026-04-21 15:14:29,833 - INFO - API request payload: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01}
+2026-04-21 15:14:29,997 - ERROR - API Error: APIError(code=-2014): API-key format invalid.
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 97, in _submit_order
+    response = self.client.futures_create_order(**request_payload)
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 7951, in futures_create_order
+    return self._request_futures_api("post", "order", True, data=params)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 144, in _request_futures_api
+    return self._request(method, uri, signed, force_params, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 107, in _request
+    return self._handle_response(self.response)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 116, in _handle_response
+    raise BinanceAPIException(response, response.status_code, response.text)
+binance.exceptions.BinanceAPIException: APIError(code=-2014): API-key format invalid.
+2026-04-21 15:14:30,002 - ERROR - Order Error: Binance API error: APIError(code=-2014): API-key format invalid.
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 97, in _submit_order
+    response = self.client.futures_create_order(**request_payload)
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 7951, in futures_create_order
+    return self._request_futures_api("post", "order", True, data=params)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 144, in _request_futures_api
+    return self._request(method, uri, signed, force_params, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 107, in _request
+    return self._handle_response(self.response)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 116, in _handle_response
+    raise BinanceAPIException(response, response.status_code, response.text)
+binance.exceptions.BinanceAPIException: APIError(code=-2014): API-key format invalid.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\cli.py", line 94, in main
+    result = service.place_market_order(symbol, side, quantity)
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 38, in place_market_order
+    return self._submit_order(request_payload, "MARKET")
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 117, in _submit_order
+    raise RuntimeError(f"Binance API error: {exc}") from exc
+RuntimeError: Binance API error: APIError(code=-2014): API-key format invalid.
+2026-04-21 15:14:31,470 - INFO - Testing Binance Futures Testnet connectivity.
+2026-04-21 15:14:32,084 - INFO - Connected to Binance Futures Testnet successfully.
+2026-04-21 15:14:32,084 - INFO - Sending LIMIT order BTCUSDT SELL qty=0.01 price=60000.0 stopPrice=None
+2026-04-21 15:14:32,084 - INFO - API request payload: {'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.01, 'price': 60000.0, 'timeInForce': 'GTC'}
+2026-04-21 15:14:32,281 - ERROR - API Error: APIError(code=-2014): API-key format invalid.
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 97, in _submit_order
+    response = self.client.futures_create_order(**request_payload)
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 7951, in futures_create_order
+    return self._request_futures_api("post", "order", True, data=params)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 144, in _request_futures_api
+    return self._request(method, uri, signed, force_params, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 107, in _request
+    return self._handle_response(self.response)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 116, in _handle_response
+    raise BinanceAPIException(response, response.status_code, response.text)
+binance.exceptions.BinanceAPIException: APIError(code=-2014): API-key format invalid.
+2026-04-21 15:14:32,285 - ERROR - Order Error: Binance API error: APIError(code=-2014): API-key format invalid.
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 97, in _submit_order
+    response = self.client.futures_create_order(**request_payload)
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 7951, in futures_create_order
+    return self._request_futures_api("post", "order", True, data=params)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 144, in _request_futures_api
+    return self._request(method, uri, signed, force_params, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 107, in _request
+    return self._handle_response(self.response)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\.venv\Lib\site-packages\binance\client.py", line 116, in _handle_response
+    raise BinanceAPIException(response, response.status_code, response.text)
+binance.exceptions.BinanceAPIException: APIError(code=-2014): API-key format invalid.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\cli.py", line 96, in main
+    result = service.place_limit_order(symbol, side, quantity, args.price)
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 56, in place_limit_order
+    return self._submit_order(request_payload, "LIMIT")
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 117, in _submit_order
+    raise RuntimeError(f"Binance API error: {exc}") from exc
+RuntimeError: Binance API error: APIError(code=-2014): API-key format invalid.
+2026-04-21 15:27:57,079 - ERROR - Authentication/Connection Error: Missing API credentials. Set BINANCE_API_KEY and BINANCE_API_SECRET.
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\cli.py", line 90, in main
+    client = BinanceClientFactory.create_client()
+  File "C:\Users\anike\trading_bot\bot\client.py", line 27, in create_client
+    raise EnvironmentError(
+        "Missing API credentials. Set BINANCE_API_KEY and BINANCE_API_SECRET."
+    )
+OSError: Missing API credentials. Set BINANCE_API_KEY and BINANCE_API_SECRET.
+2026-04-21 15:54:31,410 - INFO - Testing Binance Futures Testnet connectivity.
+2026-04-21 15:54:32,322 - INFO - Connected to Binance Futures Testnet successfully.
+2026-04-21 15:54:32,322 - INFO - Sending MARKET order BTCUSDT BUY qty=0.001 price=None stopPrice=None
+2026-04-21 15:54:32,322 - INFO - API request payload: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.001}
+2026-04-21 15:54:32,509 - ERROR - API Error: APIError(code=-2014): API-key format invalid.
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 97, in _submit_order
+    response = self.client.futures_create_order(**request_payload)
+  File "C:\Users\anike\venv\Lib\site-packages\binance\client.py", line 7951, in futures_create_order
+    return self._request_futures_api("post", "order", True, data=params)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\venv\Lib\site-packages\binance\client.py", line 144, in _request_futures_api
+    return self._request(method, uri, signed, force_params, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\venv\Lib\site-packages\binance\client.py", line 107, in _request
+    return self._handle_response(self.response)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\anike\venv\Lib\site-packages\binance\client.py", line 116, in _handle_response
+    raise BinanceAPIException(response, response.status_code, response.text)
+binance.exceptions.BinanceAPIException: APIError(code=-2014): API-key format invalid.
+2026-04-21 15:54:32,516 - ERROR - Order Error: Binance API error: APIError(code=-2014): API-key format invalid.
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 97, in _submit_order
+    response = self.client.futures_create_order(**request_payload)
+  File "C:\Users\anike\venv\Lib\site-packages\binance\client.py", line 7951, in futures_create_order
+    return self._request_futures_api("post", "order", True, data=params)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\venv\Lib\site-packages\binance\client.py", line 144, in _request_futures_api
+    return self._request(method, uri, signed, force_params, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\venv\Lib\site-packages\binance\client.py", line 107, in _request
+    return self._handle_response(self.response)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\anike\venv\Lib\site-packages\binance\client.py", line 116, in _handle_response
+    raise BinanceAPIException(response, response.status_code, response.text)
+binance.exceptions.BinanceAPIException: APIError(code=-2014): API-key format invalid.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\cli.py", line 94, in main
+    result = service.place_market_order(symbol, side, quantity)
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 38, in place_market_order
+    return self._submit_order(request_payload, "MARKET")
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 117, in _submit_order
+    raise RuntimeError(f"Binance API error: {exc}") from exc
+RuntimeError: Binance API error: APIError(code=-2014): API-key format invalid.
+2026-04-21 16:09:04,982 - INFO - Testing Binance Futures Testnet connectivity.
+2026-04-21 16:09:06,006 - INFO - Connected to Binance Futures Testnet successfully.
+2026-04-21 16:09:06,006 - INFO - Sending MARKET order BTCUSDT BUY qty=0.001 price=None stopPrice=None
+2026-04-21 16:09:06,006 - INFO - API request payload: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.001}
+2026-04-21 16:09:06,405 - ERROR - API Error: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 97, in _submit_order
+    response = self.client.futures_create_order(**request_payload)
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 7951, in futures_create_order
+    return self._request_futures_api("post", "order", True, data=params)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 144, in _request_futures_api
+    return self._request(method, uri, signed, force_params, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 107, in _request
+    return self._handle_response(self.response)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 116, in _handle_response
+    raise BinanceAPIException(response, response.status_code, response.text)
+binance.exceptions.BinanceAPIException: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-04-21 16:09:06,409 - ERROR - Order Error: Binance API error: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 97, in _submit_order
+    response = self.client.futures_create_order(**request_payload)
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 7951, in futures_create_order
+    return self._request_futures_api("post", "order", True, data=params)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 144, in _request_futures_api
+    return self._request(method, uri, signed, force_params, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 107, in _request
+    return self._handle_response(self.response)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 116, in _handle_response
+    raise BinanceAPIException(response, response.status_code, response.text)
+binance.exceptions.BinanceAPIException: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\cli.py", line 94, in main
+    result = service.place_market_order(symbol, side, quantity)
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 38, in place_market_order
+    return self._submit_order(request_payload, "MARKET")
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 117, in _submit_order
+    raise RuntimeError(f"Binance API error: {exc}") from exc
+RuntimeError: Binance API error: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-04-21 16:11:58,027 - INFO - Testing Binance Futures Testnet connectivity.
+2026-04-21 16:11:58,643 - INFO - Connected to Binance Futures Testnet successfully.
+2026-04-21 16:11:58,643 - INFO - Sending MARKET order BTCUSDT BUY qty=0.001 price=None stopPrice=None
+2026-04-21 16:11:58,644 - INFO - API request payload: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.001}
+2026-04-21 16:11:58,846 - ERROR - API Error: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 97, in _submit_order
+    response = self.client.futures_create_order(**request_payload)
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 7951, in futures_create_order
+    return self._request_futures_api("post", "order", True, data=params)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 144, in _request_futures_api
+    return self._request(method, uri, signed, force_params, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 107, in _request
+    return self._handle_response(self.response)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 116, in _handle_response
+    raise BinanceAPIException(response, response.status_code, response.text)
+binance.exceptions.BinanceAPIException: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-04-21 16:11:58,851 - ERROR - Order Error: Binance API error: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 97, in _submit_order
+    response = self.client.futures_create_order(**request_payload)
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 7951, in futures_create_order
+    return self._request_futures_api("post", "order", True, data=params)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 144, in _request_futures_api
+    return self._request(method, uri, signed, force_params, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 107, in _request
+    return self._handle_response(self.response)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\anike\AppData\Roaming\Python\Python313\site-packages\binance\client.py", line 116, in _handle_response
+    raise BinanceAPIException(response, response.status_code, response.text)
+binance.exceptions.BinanceAPIException: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\anike\trading_bot\cli.py", line 94, in main
+    result = service.place_market_order(symbol, side, quantity)
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 38, in place_market_order
+    return self._submit_order(request_payload, "MARKET")
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anike\trading_bot\bot\orders.py", line 117, in _submit_order
+    raise RuntimeError(f"Binance API error: {exc}") from exc
+RuntimeError: Binance API error: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-04-21 16:27:57,997 [DEBUG] trading_bot.client - Creating Binance Futures Testnet client...
+2026-04-21 16:27:58,752 [INFO] trading_bot.client - Binance Futures Testnet client created successfully.
+2026-04-21 16:27:58,753 [INFO] trading_bot.orders - Sending MARKET order | symbol=BTCUSDT side=BUY qty=0.001
+2026-04-21 16:27:59,397 [ERROR] trading_bot.orders - API error placing MARKET order: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-04-21 16:27:59,398 [ERROR] trading_bot - Order placement failed: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-04-21 16:29:23,493 [DEBUG] trading_bot.client - Creating Binance Futures Testnet client...
+2026-04-21 16:29:24,564 [INFO] trading_bot.client - Binance Futures Testnet client created successfully.
+2026-04-21 16:29:24,564 [INFO] trading_bot.orders - Sending MARKET order | symbol=BTCUSDT side=BUY qty=0.001
+2026-04-21 16:29:25,782 [ERROR] trading_bot.orders - API error placing MARKET order: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-04-21 16:29:25,782 [ERROR] trading_bot - Order placement failed: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-04-21 16:31:07,391 [DEBUG] trading_bot.client - Creating Binance Futures Testnet client...
+2026-04-21 16:31:08,328 [INFO] trading_bot.client - Binance Futures Testnet client created successfully.
+2026-04-21 16:31:08,329 [INFO] trading_bot.orders - Sending MARKET order | symbol=BTCUSDT side=BUY qty=0.001
+2026-04-21 16:31:09,308 [ERROR] trading_bot.orders - API error placing MARKET order: APIError(code=-2015): Invalid API-key, IP, or permissions for action
+2026-04-21 16:31:09,308 [ERROR] trading_bot - Order placement failed: APIError(code=-2015): Invalid API-key, IP, or permissions for action

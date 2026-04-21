@@ -1,242 +1,168 @@
-# Binance Futures Testnet Trading Bot
+# Simplified Trading Bot for Binance Futures Testnet
 
-A production-quality Python CLI application that places **MARKET**, **LIMIT**, and **STOP_LIMIT** orders on the [Binance Futures Testnet (USDT-M)](https://testnet.binancefuture.com). Built with clean, modular architecture and full logging.
-
----
+Python 3 command-line trading bot to place **MARKET**, **LIMIT**, and **STOP-LIMIT** orders on Binance USDT-M Futures Testnet with structured validation, logging, and exception handling.
 
 ## Features
 
-- Place **MARKET**, **LIMIT**, and **STOP_LIMIT** (bonus) orders via the command line
-- Supports both **BUY** and **SELL** sides
-- Full **input validation** with descriptive error messages
-- Structured **file logging** (`trading_bot.log`) with timestamps, levels, and messages
-- Clear **console output** — request summary, response details, and final status
-- Credentials loaded securely from **environment variables** (never hardcoded)
-- Clean, modular project layout — ready for GitHub
-
----
+- Places MARKET orders
+- Places LIMIT orders
+- Places STOP-LIMIT orders (bonus)
+- Supports BUY and SELL
+- Uses `argparse`-based CLI
+- Validates all user inputs before API calls
+- Handles validation, network, authentication, and API errors
+- Logs API requests, responses, and exceptions to `trading_bot.log`
+- Prints clean request, response, and final status output
 
 ## Project Structure
 
-```
+```text
 trading_bot/
 │
 ├── bot/
-│   ├── __init__.py          # Package exports
-│   ├── client.py            # Binance Futures Testnet client factory
-│   ├── orders.py            # MARKET / LIMIT / STOP_LIMIT order functions
-│   ├── validators.py        # Input validation utilities
-│   └── logging_config.py   # Logging setup (file + console handlers)
+│   ├── __init__.py
+│   ├── client.py
+│   ├── orders.py
+│   ├── validators.py
+│   └── logging_config.py
 │
-├── cli.py                   # CLI entry point (argparse)
+├── cli.py
 ├── README.md
 └── requirements.txt
 ```
 
----
-
-## Requirements
-
-- Python 3.9+
-- A free [Binance Futures Testnet](https://testnet.binancefuture.com) account with API keys
-
----
-
 ## Setup
 
-### 1. Clone the repository
+### 1) Create and activate a virtual environment
 
-```bash
-git clone https://github.com/your-username/trading_bot.git
-cd trading_bot
+Windows PowerShell:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 ```
 
-### 2. Create and activate a virtual environment
+macOS/Linux:
 
 ```bash
-python -m venv venv
-source venv/bin/activate        # macOS / Linux
-venv\Scripts\activate           # Windows
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
-### 3. Install dependencies
+### 2) Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Set environment variables
+### 3) Set environment variables
 
-Create a `.env` file in the project root (loaded automatically via `python-dotenv`):
+Set your Binance Futures Testnet API credentials:
+
+Windows PowerShell:
+
+```powershell
+$env:BINANCE_API_KEY="your_testnet_api_key"
+$env:BINANCE_API_SECRET="your_testnet_api_secret"
+```
+
+macOS/Linux:
+
+```bash
+export BINANCE_API_KEY="your_testnet_api_key"
+export BINANCE_API_SECRET="your_testnet_api_secret"
+```
+
+Optional `.env` file (same directory as `cli.py`):
 
 ```env
-BINANCE_API_KEY=your_testnet_api_key_here
-BINANCE_API_SECRET=your_testnet_api_secret_here
+BINANCE_API_KEY=your_testnet_api_key
+BINANCE_API_SECRET=your_testnet_api_secret
 ```
 
-> **Never** commit your `.env` file. Add it to `.gitignore`.
-
-Alternatively, export them in your shell:
-
-```bash
-export BINANCE_API_KEY="your_testnet_api_key_here"
-export BINANCE_API_SECRET="your_testnet_api_secret_here"
-```
-
----
-
-## Usage
-
-```
-python cli.py --symbol SYMBOL --side SIDE --type TYPE --quantity QTY [--price PRICE] [--stop_price STOP_PRICE]
-```
-
-| Argument | Required | Description |
-|---|---|---|
-| `--symbol` | ✅ | Trading pair, e.g. `BTCUSDT` |
-| `--side` | ✅ | `BUY` or `SELL` |
-| `--type` | ✅ | `MARKET`, `LIMIT`, or `STOP_LIMIT` |
-| `--quantity` | ✅ | Positive float, e.g. `0.01` |
-| `--price` | ⚠️ LIMIT / STOP_LIMIT | Limit fill price |
-| `--stop_price` | ⚠️ STOP_LIMIT only | Trigger price |
-
----
-
-## Example Commands
-
-**Market buy**
-```bash
-python cli.py \
-  --symbol BTCUSDT \
-  --side BUY \
-  --type MARKET \
-  --quantity 0.01
-```
-
-**Limit sell**
-```bash
-python cli.py \
-  --symbol BTCUSDT \
-  --side SELL \
-  --type LIMIT \
-  --quantity 0.01 \
-  --price 60000
-```
-
-**Stop-limit buy (bonus)**
-```bash
-python cli.py \
-  --symbol BTCUSDT \
-  --side BUY \
-  --type STOP_LIMIT \
-  --quantity 0.01 \
-  --price 62000 \
-  --stop_price 61500
-```
-
----
-
-## Sample Output
+## How to Run
 
 ### MARKET order
 
-```
-====================================================
-          ORDER REQUEST SUMMARY
-====================================================
-  Symbol     : BTCUSDT
-  Side       : BUY
-  Order Type : MARKET
-  Quantity   : 0.01
-====================================================
-
-====================================================
-          ORDER RESPONSE DETAILS
-====================================================
-  Order ID     : 3951823410
-  Status       : FILLED
-  Executed Qty : 0.01
-  Avg Price    : 63412.50000000
-====================================================
-
-  ✅  SUCCESS — Order placed on Binance Futures Testnet.
+```bash
+python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.01
 ```
 
 ### LIMIT order
 
-```
-====================================================
-          ORDER REQUEST SUMMARY
-====================================================
-  Symbol     : BTCUSDT
-  Side       : SELL
-  Order Type : LIMIT
-  Quantity   : 0.01
-  Price      : 60000.0
-====================================================
-
-====================================================
-          ORDER RESPONSE DETAILS
-====================================================
-  Order ID     : 3951823511
-  Status       : NEW
-  Executed Qty : 0.00
-====================================================
-
-  ✅  SUCCESS — Order placed on Binance Futures Testnet.
+```bash
+python cli.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.01 --price 60000
 ```
 
-### Validation failure
+### STOP-LIMIT order (bonus)
 
-```
-====================================================
-          ORDER REQUEST SUMMARY
-====================================================
-  ...
-
-  ❌  FAILURE — Price is required for LIMIT orders.
+```bash
+python cli.py --symbol BTCUSDT --side BUY --type STOP-LIMIT --quantity 0.01 --price 59500 --stop_price 59600
 ```
 
----
+## CLI Arguments
 
-## Log File
+- `--symbol` (required): trading pair symbol, e.g., `BTCUSDT`
+- `--side` (required): `BUY` or `SELL`
+- `--type` (required): `MARKET`, `LIMIT`, or `STOP-LIMIT`
+- `--quantity` (required): positive float quantity
+- `--price` (required for `LIMIT` and `STOP-LIMIT`): positive float limit price
+- `--stop_price` (required for `STOP-LIMIT`): positive float stop trigger price
 
-All API activity is written to `trading_bot.log` in the project root:
+## Sample Console Output
 
+```text
+Order Request Summary:
+- Symbol: BTCUSDT
+- Side: BUY
+- Order Type: MARKET
+- Quantity: 0.01
+
+Order Response Details:
+- orderId: 123456789
+- status: NEW
+- executedQty: 0.01
+- avgPrice: 0
+
+Final Status: SUCCESS - Order placed successfully.
 ```
-2024-07-15 14:23:01 [INFO]  trading_bot.orders - Sending MARKET order | symbol=BTCUSDT side=BUY qty=0.01
-2024-07-15 14:23:02 [INFO]  trading_bot.orders - MARKET order placed successfully | orderId=3951823410 status=FILLED executedQty=0.01
-2024-07-15 14:25:10 [INFO]  trading_bot.orders - Sending LIMIT order | symbol=BTCUSDT side=SELL qty=0.01 price=60000
-2024-07-15 14:25:11 [INFO]  trading_bot.orders - LIMIT order placed successfully | orderId=3951823511 status=NEW executedQty=0.00
-2024-07-15 14:27:00 [ERROR] trading_bot.validators - Invalid quantity '-1.0'. Quantity must be a positive number.
-2024-07-15 14:28:45 [ERROR] trading_bot.orders - API error placing MARKET order: APIError(code=-1121): Invalid symbol.
+
+## Example Log Output
+
+### MARKET order
+
+```text
+2026-04-21 10:22:11,003 - INFO - Testing Binance Futures Testnet connectivity.
+2026-04-21 10:22:11,210 - INFO - Connected to Binance Futures Testnet successfully.
+2026-04-21 10:22:11,212 - INFO - Sending MARKET order BTCUSDT BUY qty=0.01 price=None stopPrice=None
+2026-04-21 10:22:11,212 - INFO - API request payload: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01}
+2026-04-21 10:22:11,514 - INFO - API response: {'orderId': 12345, 'status': 'NEW', 'executedQty': '0.01', 'avgPrice': '0'}
+2026-04-21 10:22:11,514 - INFO - Order placed successfully orderId=12345 status=NEW
 ```
 
----
+### LIMIT order
 
-## Error Handling
+```text
+2026-04-21 10:25:42,113 - INFO - Sending LIMIT order BTCUSDT SELL qty=0.01 price=60000.0 stopPrice=None
+2026-04-21 10:25:42,114 - INFO - API request payload: {'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.01, 'price': 60000.0, 'timeInForce': 'GTC'}
+2026-04-21 10:25:42,404 - INFO - API response: {'orderId': 12346, 'status': 'NEW', 'executedQty': '0', 'avgPrice': '0'}
+2026-04-21 10:25:42,404 - INFO - Order placed successfully orderId=12346 status=NEW
+```
 
-The bot handles the following error conditions gracefully:
+## Error Handling Covered
 
-| Error | Handled by |
-|---|---|
-| Missing / invalid `BINANCE_API_KEY` or `BINANCE_API_SECRET` | `client.py` |
-| Invalid symbol format | `validators.py` |
-| Invalid side (not BUY/SELL) | `validators.py` |
-| Invalid order type | `validators.py` |
-| Negative or zero quantity | `validators.py` |
-| Missing price for LIMIT / STOP_LIMIT | `validators.py` |
-| Missing stop_price for STOP_LIMIT | `validators.py` |
-| Binance API / order errors | `orders.py` |
-| Network / connection errors | `client.py` + `orders.py` |
-
----
+- Invalid symbol format
+- Invalid side or order type
+- Missing `--price` for LIMIT/STOP-LIMIT
+- Missing `--stop_price` for STOP-LIMIT
+- Negative or zero quantity/price values
+- Network request failures
+- Binance API failures
+- Missing/invalid authentication credentials
 
 ## Assumptions
 
-1. The Binance Futures Testnet environment is used; no real funds are involved.
-2. API keys must be obtained from [https://testnet.binancefuture.com](https://testnet.binancefuture.com).
-3. Quantity precision must comply with the specific symbol's lot-size filter on the testnet; submitting a quantity with too many decimal places will result in a Binance API error (`-1111`).
-4. `STOP_LIMIT` maps to Binance Futures order type `STOP` (trigger + limit price).
-5. All LIMIT orders use `timeInForce=GTC` (Good Till Cancelled).
-6. The `.env` file approach is provided for developer convenience; production deployments should inject secrets via a secrets manager (Vault, AWS Secrets Manager, etc.).
+- Binance Futures Testnet API key/secret are active and authorized for futures trading.
+- Symbol is provided in uppercase Binance format (e.g., `BTCUSDT`).
+- User runs commands from the `trading_bot` project root.
+
